@@ -18,7 +18,7 @@ class GeolocationService implements GeolocationServiceInterface {
   Future<bool> _enableService() async {
     _serviceEnabled = await Geolocator.isLocationServiceEnabled();
 
-    if (_serviceEnabled) {
+    if (!_serviceEnabled) {
       return Future.error('GeolocationService are disabled');
     }
 

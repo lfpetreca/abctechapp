@@ -1,3 +1,5 @@
+import 'package:abctechapp/pages/order_bind.dart';
+import 'package:abctechapp/pages/order_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -25,7 +27,16 @@ class AbcTechApp extends StatelessWidget {
       title: 'Abc Tech App',
       theme: ThemeData(primarySwatch: Colors.blue),
       getPages: [
-        GetPage(name: "/", page: () => const HomePage(), binding: HomeBind())
+        GetPage(
+          name: "/",
+          page: () => const OrderPage(),
+          binding: OrderBind(),
+        ),
+        GetPage(
+          name: "/assists",
+          page: () => const HomePage(),
+          binding: HomeBind(),
+        )
       ],
     );
   }
