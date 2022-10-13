@@ -1,7 +1,7 @@
-import 'package:abctechapp/model/assist.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
+import '../model/assist.dart';
 import '../provider/assist_provider.dart';
 
 class AssistService extends GetxService {

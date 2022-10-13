@@ -1,9 +1,10 @@
-import 'package:abctechapp/pages/home_bind.dart';
-import 'package:abctechapp/pages/home_page.dart';
-import 'package:abctechapp/provider/assist_provider.dart';
-import 'package:abctechapp/services/assist_services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../pages/home_bind.dart';
+import '../pages/home_page.dart';
+import '../provider/assist_provider.dart';
+import '../services/assist_services.dart';
 
 void main() {
   initServices();

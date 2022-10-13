@@ -1,6 +1,7 @@
-import 'package:abctechapp/model/assist.dart';
-import 'package:abctechapp/services/assist_services.dart';
 import 'package:get/get.dart';
+
+import '../model/assist.dart';
+import '../services/assist_services.dart';
 
 class AssistController extends GetxController with StateMixin<List<Assist>> {
   late AssistService _service;
