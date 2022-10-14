@@ -5,6 +5,7 @@ class Assist {
   int id;
   String name;
   String description;
+
   Assist({
     required this.id,
     required this.name,
