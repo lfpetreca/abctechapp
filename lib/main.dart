@@ -25,7 +25,7 @@ class AbcTechApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Abc Tech App',
-      theme: ThemeData(primarySwatch: Colors.purple),
+      theme: ThemeData(primarySwatch: Colors.blueGrey),
       getPages: [
         GetPage(
           name: "/",

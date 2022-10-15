@@ -75,15 +75,11 @@ class OrderPage extends GetView<OrderController> {
                     ),
                   ),
                 ),
-                /*  ElevatedButton.icon(
-                    onPressed: () => controller.editAssists(),
-                    icon: const Icon(Icons.search),
-                    label: const Text('')), */
                 SizedBox.fromSize(
                   size: const Size(40, 40),
                   child: ClipOval(
                     child: Material(
-                      color: Colors.amberAccent,
+                      color: Colors.orange,
                       child: InkWell(
                         onTap: () => controller.editAssists(),
                         child: Column(
