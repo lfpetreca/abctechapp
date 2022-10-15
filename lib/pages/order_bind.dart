@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 
 import '../controller/order_controller.dart';
-import '../services/geolocation_service.dart';
 import '../provider/order_provider.dart';
+import '../services/geolocation_service.dart';
 import '../services/order_service.dart';
 
 class OrderBind extends Bindings {

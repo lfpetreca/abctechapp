@@ -20,31 +20,45 @@ class OrderPage extends GetView<OrderController> {
   }
 
   Widget buildForm(BuildContext context) {
+    final formKey = GlobalKey<FormState>();
+
     return SingleChildScrollView(
       child: Form(
         key: controller.formKey,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Row(children: const [
-              Expanded(
-                child: Text(
-                  'Preencha o fomulário de ordem de serviço',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
+            Row(
+              children: const [
+                Expanded(
+                  child: Text(
+                    'Preencha o fomulário de ordem de serviço',
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-              )
-            ]),
-            TextFormField(
-              controller: controller.operatorIdController,
-              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-              keyboardType: TextInputType.number,
-              decoration:
-                  const InputDecoration(labelText: "Código do prestador"),
-              textAlign: TextAlign.center,
+                )
+              ],
+            ),
+            Form(
+              key: formKey,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              child: TextFormField(
+                controller: controller.operatorIdController,
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                keyboardType: TextInputType.number,
+                decoration:
+                    const InputDecoration(labelText: "Código do prestador"),
+                textAlign: TextAlign.center,
+                validator: (value) {
+                  if (value != null && value.length < 3) {
+                    return 'Código do prestador precista ter ao menos 3 caracteres';
+                  }
+                  return null;
+                },
+              ),
             ),
             Row(
               children: [
@@ -61,19 +75,26 @@ class OrderPage extends GetView<OrderController> {
                     ),
                   ),
                 ),
-                Ink(
-                  decoration: const ShapeDecoration(
-                    shape: CircleBorder(),
-                    color: Colors.blueAccent,
-                  ),
-                  width: 40,
-                  height: 40,
-                  child: IconButton(
-                    icon: const Icon(
-                      Icons.search,
-                      color: Colors.white,
-                    ),
+                /*  ElevatedButton.icon(
                     onPressed: () => controller.editAssists(),
+                    icon: const Icon(Icons.search),
+                    label: const Text('')), */
+                SizedBox.fromSize(
+                  size: const Size(40, 40),
+                  child: ClipOval(
+                    child: Material(
+                      color: Colors.amberAccent,
+                      child: InkWell(
+                        onTap: () => controller.editAssists(),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: const <Widget>[
+                            Icon(Icons.search),
+                          ],
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ],
@@ -81,14 +102,19 @@ class OrderPage extends GetView<OrderController> {
             Obx(
               () => renderAssists(controller.selectedAssists),
             ),
-            Row(children: [
-              Expanded(
-                child: ElevatedButton(
-                  onPressed: () => controller.finishStartOrder(),
-                  child: const Text("Finalizar"),
-                ),
-              )
-            ]),
+            Row(
+              children: [
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      final isValidForm = formKey.currentState!.validate();
+                      isValidForm ? controller.finishStartOrder() : null;
+                    },
+                    child: const Text("Finalizar"),
+                  ),
+                )
+              ],
+            ),
           ],
         ),
       ),
@@ -103,7 +129,7 @@ class OrderPage extends GetView<OrderController> {
       ),
       body: Container(
         constraints: const BoxConstraints.expand(),
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 30),
         child: controller.obx(
           (state) => buildForm(context),
           onLoading: const Center(child: CircularProgressIndicator()),

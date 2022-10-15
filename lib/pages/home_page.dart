@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../model/assist.dart';
 import '../controller/assist_controller.dart';
+import '../model/assist.dart';
 
 class HomePage extends GetView<AssistController> {
   const HomePage({super.key});
@@ -13,7 +13,7 @@ class HomePage extends GetView<AssistController> {
       itemCount: assist.length,
       itemBuilder: ((context, index) => ListTile(
             title: Text(assist[index].name),
-            selectedColor: Colors.red,
+            selectedColor: Colors.amber,
             selected: controller.isSelected(index),
             onTap: () => controller.selectList(index),
           )),
@@ -26,6 +26,7 @@ class HomePage extends GetView<AssistController> {
       appBar: AppBar(title: const Text('Lista de Serviços')),
       body: Container(
         constraints: const BoxConstraints.expand(),
+        padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 30),
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

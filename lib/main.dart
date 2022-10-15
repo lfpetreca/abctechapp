@@ -1,10 +1,10 @@
-import 'package:abctechapp/pages/order_bind.dart';
-import 'package:abctechapp/pages/order_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../pages/home_bind.dart';
 import '../pages/home_page.dart';
+import '../pages/order_bind.dart';
+import '../pages/order_page.dart';
 import '../provider/assist_provider.dart';
 import '../services/assist_services.dart';
 
@@ -25,7 +25,7 @@ class AbcTechApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Abc Tech App',
-      theme: ThemeData(primarySwatch: Colors.blue),
+      theme: ThemeData(primarySwatch: Colors.purple),
       getPages: [
         GetPage(
           name: "/",
