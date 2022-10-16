@@ -1,4 +1,3 @@
-import 'package:abctechapp/pages/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -6,6 +5,7 @@ import '../pages/home_bind.dart';
 import '../pages/home_page.dart';
 import '../pages/order_bind.dart';
 import '../pages/order_page.dart';
+import '../pages/splash_page.dart';
 import '../provider/assist_provider.dart';
 import '../services/assist_services.dart';
 
