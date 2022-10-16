@@ -1,3 +1,4 @@
+import 'package:abctechapp/pages/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -40,6 +41,10 @@ class AbcTechApp extends StatelessWidget {
       getPages: [
         GetPage(
           name: '/',
+          page: () => const SplashPage(),
+        ),
+        GetPage(
+          name: '/order',
           page: () => const OrderPage(),
           binding: OrderBind(),
         ),
