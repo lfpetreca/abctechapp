@@ -32,7 +32,7 @@ class OrderPage extends GetView<OrderController> {
               children: const [
                 Expanded(
                   child: Text(
-                    'Preencha o fomulário de ordem de serviço',
+                    'Formulário de ordem de serviço:',
                     textAlign: TextAlign.start,
                     style: TextStyle(
                       fontSize: 18,
@@ -49,12 +49,17 @@ class OrderPage extends GetView<OrderController> {
                 controller: controller.operatorIdController,
                 inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 keyboardType: TextInputType.number,
-                decoration:
-                    const InputDecoration(labelText: "Código do prestador"),
+                decoration: const InputDecoration(
+                  labelText: 'Código do prestador',
+                  errorStyle: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
                 textAlign: TextAlign.center,
                 validator: (value) {
                   if (value != null && value.length < 3) {
-                    return 'Código do prestador precista ter ao menos 3 caracteres';
+                    return 'Código do prestador precisa ter ao menos 3 caracteres';
                   }
                   return null;
                 },
@@ -64,7 +69,10 @@ class OrderPage extends GetView<OrderController> {
               children: [
                 const Expanded(
                   child: Padding(
-                    padding: EdgeInsets.only(top: 25, bottom: 25),
+                    padding: EdgeInsets.only(
+                      top: 25,
+                      bottom: 25,
+                    ),
                     child: Text(
                       'Selecione os serviços a serem prestados',
                       textAlign: TextAlign.left,
@@ -79,14 +87,17 @@ class OrderPage extends GetView<OrderController> {
                   size: const Size(40, 40),
                   child: ClipOval(
                     child: Material(
-                      color: Colors.orange,
+                      color: Theme.of(context).colorScheme.secondary,
                       child: InkWell(
                         onTap: () => controller.editAssists(),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: const <Widget>[
-                            Icon(Icons.search),
+                            Icon(
+                              Icons.search,
+                              color: Colors.white,
+                            ),
                           ],
                         ),
                       ),
@@ -106,7 +117,16 @@ class OrderPage extends GetView<OrderController> {
                       final isValidForm = formKey.currentState!.validate();
                       isValidForm ? controller.finishStartOrder() : null;
                     },
-                    child: const Text("Finalizar"),
+                    child: Obx(
+                      () {
+                        if (controller.screenState.value ==
+                            OrderState.creating) {
+                          return const Text('Iniciar Serviço');
+                        } else {
+                          return const Text('Finalizar Serviço');
+                        }
+                      },
+                    ),
                   ),
                 )
               ],
@@ -121,11 +141,20 @@ class OrderPage extends GetView<OrderController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Ordem de serviço"),
+        title: const Text(
+          'Ordem de Serviço',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: Container(
         constraints: const BoxConstraints.expand(),
-        padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 30),
+        padding: const EdgeInsets.symmetric(
+          vertical: 50,
+          horizontal: 30,
+        ),
         child: controller.obx(
           (state) => buildForm(context),
           onLoading: const Center(child: CircularProgressIndicator()),

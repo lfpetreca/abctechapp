@@ -13,7 +13,7 @@ class AssistService extends GetxService {
     Response response = await assistProvider.getAssists();
 
     if (response.hasError) {
-      return Future.error(ErrorDescription("Erro na conexão"));
+      return Future.error(ErrorDescription('Erro na conexão'));
     }
 
     try {

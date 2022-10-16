@@ -10,7 +10,7 @@ import '../services/assist_services.dart';
 
 void main() {
   initServices();
-  runApp(const AbcTechApp());
+  runApp(AbcTechApp());
 }
 
 void initServices() {
@@ -18,22 +18,33 @@ void initServices() {
 }
 
 class AbcTechApp extends StatelessWidget {
-  const AbcTechApp({super.key});
+  final ThemeData theme = ThemeData(
+    primarySwatch: Colors.blueGrey,
+    appBarTheme: const AppBarTheme(
+      titleTextStyle: TextStyle(
+        fontFamily: 'OpenSans',
+      ),
+    ),
+  );
+
+  AbcTechApp({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Abc Tech App',
-      theme: ThemeData(primarySwatch: Colors.blueGrey),
+      theme: theme.copyWith(
+        colorScheme: theme.colorScheme.copyWith(secondary: Colors.orange),
+      ),
       getPages: [
         GetPage(
-          name: "/",
+          name: '/',
           page: () => const OrderPage(),
           binding: OrderBind(),
         ),
         GetPage(
-          name: "/assists",
+          name: '/assists',
           page: () => const HomePage(),
           binding: HomeBind(),
         )

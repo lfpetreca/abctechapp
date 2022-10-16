@@ -13,7 +13,7 @@ class HomePage extends GetView<AssistController> {
       itemCount: assist.length,
       itemBuilder: ((context, index) => ListTile(
             title: Text(assist[index].name),
-            selectedColor: Colors.orange,
+            selectedColor: Theme.of(context).colorScheme.secondary,
             selected: controller.isSelected(index),
             onTap: () => controller.selectList(index),
           )),
@@ -23,10 +23,21 @@ class HomePage extends GetView<AssistController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Lista de Serviços')),
+      appBar: AppBar(
+        title: const Text(
+          'Lista de Serviços',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
       body: Container(
         constraints: const BoxConstraints.expand(),
-        padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 30),
+        padding: const EdgeInsets.symmetric(
+          vertical: 50,
+          horizontal: 30,
+        ),
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -35,12 +46,15 @@ class HomePage extends GetView<AssistController> {
                 children: const [
                   Expanded(
                     child: Padding(
-                      padding: EdgeInsets.all(15),
+                      padding: EdgeInsets.symmetric(
+                        vertical: 0,
+                        horizontal: 15,
+                      ),
                       child: Text(
                         'Os serviços disponíveis são:',
                         textAlign: TextAlign.left,
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -58,6 +72,7 @@ class HomePage extends GetView<AssistController> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Theme.of(context).colorScheme.secondary,
         onPressed: () {
           controller.finishSelectAssists();
         },

@@ -72,18 +72,18 @@ class OrderController extends GetxController with StateMixin<OrderCreated> {
     screenState.value = OrderState.finished;
     _orderService.createOrder(_order).then((value) {
       if (value.success) {
-        Get.snackbar("Sucesso", "Ordem de serviço criada com sucesso");
+        Get.snackbar('Sucesso', 'Ordem de serviço criada com sucesso');
         clearForm();
       }
     }).catchError((error) {
-      Get.snackbar("Erro", error.toString());
+      Get.snackbar('Erro', error.toString());
     });
   }
 
   void clearForm() {
     screenState.value = OrderState.creating;
     selectedAssists.clear();
-    operatorIdController.text = "";
+    operatorIdController.text = '';
     change(null, status: RxStatus.success());
   }
 
@@ -91,6 +91,6 @@ class OrderController extends GetxController with StateMixin<OrderCreated> {
     if (screenState.value != OrderState.creating) {
       return null;
     }
-    Get.toNamed("/assists", arguments: selectedAssists);
+    Get.toNamed('/assists', arguments: selectedAssists);
   }
 }

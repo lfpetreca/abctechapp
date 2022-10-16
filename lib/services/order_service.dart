@@ -19,14 +19,14 @@ class OrderService extends GetxService implements OrderServiceInterface {
     Response response = await _orderProviderInterface.postOrder(order);
 
     if (response.hasError) {
-      return Future.error(ErrorDescription("Erro na conexão"));
+      return Future.error(ErrorDescription('Erro na conexão'));
     }
 
     try {
       return Future.sync(() => OrderCreated(success: true, message: 'message'));
     } catch (e) {
       e.printError();
-      return Future.error(ErrorDescription("Erro não esperado"));
+      return Future.error(ErrorDescription('Erro não esperado'));
     }
   }
 }
