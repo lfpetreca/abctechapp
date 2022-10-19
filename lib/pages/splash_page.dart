@@ -30,7 +30,7 @@ class _SplashPageState extends State<SplashPage> {
       backgroundColor: Theme.of(context).colorScheme.primary,
       body: const Center(
         child: Text(
-          'Bem-vindo ao ABCapp',
+          'Bem-vindo ao ABCTech APP',
           style: TextStyle(
             fontSize: 26,
             fontWeight: FontWeight.bold,
